@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Login - EventVantage</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#004ac6",
+              "secondary": "#712ae2",
+              "background": "#f7f9fb",
+              "on-background": "#191c1e",
+              "surface": "#ffffff",
+              "on-surface": "#191c1e",
+              "on-surface-variant": "#434655",
+              "outline-variant": "#c3c6d7",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "body": ["Sora"],
+              "display": ["Sora"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        body { font-family: 'Sora', sans-serif; background-color: #f7f9fb; }
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: #004ac6;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 74, 198, 0.3);
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #c3c6d7;
+            background: #ffffff;
+            transition: all 0.2s;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #004ac6;
+            box-shadow: 0 0 0 3px rgba(0, 74, 198, 0.1);
+        }
+        
+        
+        .fade-enter { opacity: 0; transform: translateY(10px); }
+        .fade-enter-active { opacity: 1; transform: translateY(0); transition: opacity 300ms, transform 300ms; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">
+    
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-secondary/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    
+    <div class="relative z-10 w-full max-w-md p-8 glass-card rounded-2xl mx-4">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">EventVantage</h1>
+            <p class="text-on-surface-variant text-sm" id="auth-subtitle">Sign in to your command center</p>
+        </div>
+
+        
+        <form id="signin-form" class="space-y-4" novalidate>
+            <div>
+                <label class="block text-sm font-medium text-on-surface mb-1">Email</label>
+                <input type="email" id="signin-email" class="input-field" placeholder="name@company.com" required>
+                <p id="signin-email-error" class="text-error text-xs hidden mt-1"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-on-surface mb-1">Password</label>
+                <input type="password" id="signin-password" class="input-field" placeholder="••••••••" required>
+                <p id="signin-password-error" class="text-error text-xs hidden mt-1"></p>
+            </div>
+            <div class="flex items-center justify-between text-sm">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="rounded border-outline-variant text-primary focus:ring-primary">
+                    <span class="text-on-surface-variant">Remember me</span>
+                </label>
+                <a href="#" class="text-primary font-medium hover:underline">Forgot password?</a>
+            </div>
+            
+            <div id="signin-actions">
+                <button type="button" id="signin-send-otp-btn" class="w-full btn-primary text-white font-semibold py-3 rounded-lg mt-2">
+                    Send OTP to Login
+                </button>
+            </div>
+
+            
+            <div id="signin-otp-section" class="hidden space-y-3 pt-4 border-t border-outline-variant/30 mt-4">
+                <p class="text-xs text-green-600 text-center font-medium bg-green-50 py-2 rounded">OTP Sent! Please check your inbox.</p>
+                <div>
+                    <label class="block text-sm font-medium text-on-surface mb-1">Enter OTP</label>
+                    <input type="text" id="signin-otp" class="input-field text-center tracking-[0.5em] font-mono" placeholder="123456" maxlength="6">
+                    <p id="signin-otp-error" class="text-error text-xs hidden mt-1"></p>
+                </div>
+                <p id="signin-global-error" class="text-error text-xs text-center hidden mt-1"></p>
+                <button type="submit" id="signin-submit-btn" class="w-full btn-primary text-white font-semibold py-3 rounded-lg mt-2 opacity-50 cursor-not-allowed" disabled>
+                    Verify & Login
+                </button>
+            </div>
+            <p class="text-center text-sm text-on-surface-variant mt-6">
+                Don't have an account? 
+                <button type="button" id="show-signup" class="text-primary font-semibold hover:underline">Request access</button>
+            </p>
+        </form>
+
+        
+        <form id="signup-form" class="space-y-4 hidden" novalidate>
+            <div>
+                <label class="block text-sm font-medium text-on-surface mb-1">Full Name</label>
+                <input type="text" id="signup-name" class="input-field" placeholder="Sarah Jenkins" required>
+                <p id="signup-name-error" class="text-error text-xs hidden mt-1"></p>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-on-surface mb-1">Email</label>
+                <input type="email" id="signup-email" class="input-field" placeholder="name@company.com" required>
+                <p id="signup-email-error" class="text-error text-xs hidden mt-1"></p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-on-surface mb-1">Password</label>
+                    <input type="password" id="signup-password" class="input-field" placeholder="••••••••" required>
+                    <p id="signup-password-error" class="text-error text-xs hidden mt-1"></p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-on-surface mb-1">Confirm</label>
+                    <input type="password" id="signup-confirm" class="input-field" placeholder="••••••••" required>
+                    <p id="signup-confirm-error" class="text-error text-xs hidden mt-1"></p>
+                </div>
+            </div>
+            <p id="password-error" class="text-error text-xs hidden">Passwords do not match.</p>
+
+            
+            <div class="pt-2 border-t border-outline-variant/30 mt-4">
+                <button type="button" id="send-otp-btn" class="w-full bg-surface border border-primary text-primary font-semibold py-2 rounded-lg hover:bg-primary/5 transition-colors mb-3">
+                    Send OTP to Email
+                </button>
+                
+                <div id="otp-section" class="hidden space-y-3">
+                    <p class="text-xs text-green-600 text-center font-medium bg-green-50 py-2 rounded">OTP Sent! Please check your inbox.</p>
+                    <div>
+                        <label class="block text-sm font-medium text-on-surface mb-1">Enter OTP</label>
+                        <input type="text" id="signup-otp" class="input-field text-center tracking-[0.5em] font-mono" placeholder="123456" maxlength="6">
+                        <p id="signup-otp-error" class="text-error text-xs hidden mt-1"></p>
+                    </div>
+                </div>
+            </div>
+
+            <p id="signup-global-error" class="text-error text-xs text-center hidden mt-1"></p>
+            <p id="signup-global-success" class="text-green-600 bg-green-50 text-xs text-center hidden mt-1 p-2 rounded"></p>
+            <button type="submit" id="signup-submit-btn" class="w-full btn-primary text-white font-semibold py-3 rounded-lg mt-4 opacity-50 cursor-not-allowed" disabled>
+                Complete Registration
+            </button>
+            
+            <p class="text-center text-sm text-on-surface-variant mt-6">
+                Already have an account? 
+                <button type="button" id="show-signin" class="text-primary font-semibold hover:underline">Sign In</button>
+            </p>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const signinForm = document.getElementById('signin-form');
+            const signupForm = document.getElementById('signup-form');
+            const showSignupBtn = document.getElementById('show-signup');
+            const showSigninBtn = document.getElementById('show-signin');
+            const authSubtitle = document.getElementById('auth-subtitle');
+
+            const signinSendOtpBtn = document.getElementById('signin-send-otp-btn');
+            const signinOtpSection = document.getElementById('signin-otp-section');
+            const signinActions = document.getElementById('signin-actions');
+            const signinOtp = document.getElementById('signin-otp');
+            const signinSubmitBtn = document.getElementById('signin-submit-btn');
+
+            const signupName = document.getElementById('signup-name');
+            const signupPwd = document.getElementById('signup-password');
+            const signupConfirm = document.getElementById('signup-confirm');
+            const pwdError = document.getElementById('password-error');
+            const sendOtpBtn = document.getElementById('send-otp-btn');
+            const otpSection = document.getElementById('otp-section');
+            const signupOtp = document.getElementById('signup-otp');
+            const signupSubmitBtn = document.getElementById('signup-submit-btn');
+
+            showSignupBtn.addEventListener('click', () => {
+                signinForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                authSubtitle.innerText = 'Request access to the platform';
+            });
+
+            showSigninBtn.addEventListener('click', () => {
+                signupForm.classList.add('hidden');
+                signinForm.classList.remove('hidden');
+                authSubtitle.innerText = 'Sign in to your command center';
+            });
+
+            const showError = (id, msg) => {
+                const el = document.getElementById(id);
+                if(el) {
+                    el.innerText = msg;
+                    el.classList.remove('hidden');
+                }
+            };
+
+            const hideAllErrors = () => {
+                document.querySelectorAll('.text-error').forEach(el => el.classList.add('hidden'));
+                const successEl = document.getElementById('signup-global-success');
+                if(successEl) successEl.classList.add('hidden');
+            };
+
+            const validatePasswords = () => {
+                if (signupConfirm.value.length > 0 && signupPwd.value !== signupConfirm.value) {
+                    showError('password-error', 'Passwords do not match.');
+                    return false;
+                } else {
+                    document.getElementById('password-error').classList.add('hidden');
+                    return signupPwd.value.length > 0 && signupPwd.value === signupConfirm.value;
+                }
+            };
+
+            signupPwd.addEventListener('input', validatePasswords);
+            signupConfirm.addEventListener('input', validatePasswords);
+
+            sendOtpBtn.addEventListener('click', async () => {
+                hideAllErrors();
+                const name = signupName.value;
+                const email = document.getElementById('signup-email').value;
+                
+                let hasError = false;
+                if(!name) { showError('signup-name-error', 'Name is required'); hasError = true; }
+                if(!email) { showError('signup-email-error', 'Email is required'); hasError = true; }
+                if(!signupPwd.value) { showError('signup-password-error', 'Password is required'); hasError = true; }
+                
+                if(hasError || !validatePasswords()) {
+                    return;
+                }
+                
+                try {
+                    const res = await fetch((window.location.hostname ? `http://${window.location.hostname}:3000` : 'http://localhost:3000') + '/api/auth/send-otp-signup', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ email })
+                    });
+                    const data = await res.json();
+                    
+                    if (!res.ok) throw new Error(data.error);
+                    
+                    sendOtpBtn.innerText = "Resend OTP";
+                    otpSection.classList.remove('hidden');
+                } catch (err) {
+                    showError('signup-global-error', err.message);
+                }
+            });
+
+            signupOtp.addEventListener('input', (e) => {
+                if(e.target.value.length === 6) {
+                    signupSubmitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    signupSubmitBtn.removeAttribute('disabled');
+                } else {
+                    signupSubmitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    signupSubmitBtn.setAttribute('disabled', 'true');
+                }
+            });
+
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideAllErrors();
+                
+                if(signupOtp.value.length === 6 && validatePasswords()) {
+                    const name = signupName.value;
+                    const email = document.getElementById('signup-email').value;
+                    const password = signupPwd.value;
+                    const otp = signupOtp.value;
+
+                    try {
+                        const res = await fetch((window.location.hostname ? `http://${window.location.hostname}:3000` : 'http://localhost:3000') + '/api/auth/signup', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({ name, email, password, otp })
+                        });
+                        const data = await res.json();
+                        
+                        if (!res.ok) throw new Error(data.error);
+
+                        const successEl = document.getElementById('signup-global-success');
+                        successEl.innerText = "Registration successful! Redirecting to sign in...";
+                        successEl.classList.remove('hidden');
+                        
+                        setTimeout(() => {
+                            signupForm.classList.add('hidden');
+                            signinForm.classList.remove('hidden');
+                            authSubtitle.innerText = 'Sign in to your command center';
+                            document.getElementById('signin-email').value = email;
+                            successEl.classList.add('hidden');
+                        }, 2000);
+                        
+                    } catch (err) {
+                        showError('signup-global-error', err.message);
+                    }
+                } else {
+                    if (signupOtp.value.length !== 6) showError('signup-otp-error', 'Please enter a 6-digit OTP');
+                }
+            });
+
+            const handleSendOtp = async () => {
+                hideAllErrors();
+                const email = document.getElementById('signin-email').value;
+                const pwd = document.getElementById('signin-password').value;
+                
+                let hasError = false;
+                if(!email) { showError('signin-email-error', 'Email is required'); hasError = true; }
+                if(!pwd) { showError('signin-password-error', 'Password is required'); hasError = true; }
+                
+                if(hasError) return;
+
+                try {
+                    const res = await fetch((window.location.hostname ? `http://${window.location.hostname}:3000` : 'http://localhost:3000') + '/api/auth/send-otp-login', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ email, password: pwd })
+                    });
+                    const data = await res.json();
+                    
+                    if (!res.ok) throw new Error(data.error);
+
+                    signinActions.classList.add('hidden');
+                    signinOtpSection.classList.remove('hidden');
+                } catch (err) {
+                    showError('signin-global-error', err.message);
+                }
+            };
+
+            signinSendOtpBtn.addEventListener('click', handleSendOtp);
+
+            signinOtp.addEventListener('input', (e) => {
+                if(e.target.value.length === 6) {
+                    signinSubmitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    signinSubmitBtn.removeAttribute('disabled');
+                } else {
+                    signinSubmitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    signinSubmitBtn.setAttribute('disabled', 'true');
+                }
+            });
+
+            signinForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideAllErrors();
+                
+                if(signinOtp.value.length === 6) {
+                    const email = document.getElementById('signin-email').value;
+                    const otp = signinOtp.value;
+
+                    try {
+                        const res = await fetch((window.location.hostname ? `http://${window.location.hostname}:3000` : 'http://localhost:3000') + '/api/auth/login', {
+                            method: 'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({ email, otp })
+                        });
+                        const data = await res.json();
+                        
+                        if (!res.ok) throw new Error(data.error);
+
+                        localStorage.setItem('eventpro_auth', 'true');
+                        localStorage.setItem('eventpro_user', data.user.name);
+                        localStorage.setItem('eventpro_role', data.user.role);
+
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const redirectUrl = urlParams.get('redirect') || 'home.html';
+                        window.location.href = redirectUrl;
+                    } catch (err) {
+                        showError('signin-global-error', err.message);
+                    }
+                } else {
+                    showError('signin-otp-error', 'Please enter a 6-digit OTP');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
