@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - EventPro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#191c1e",
+                        "primary-container": "#2563eb",
+                        "on-primary-container": "#eeefff",
+                        "on-surface-variant": "#434655",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "background": "#f7f9fb",
+                        "surface-tint": "#0053db",
+                        "tertiary-container": "#656d84",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "on-surface": "#191c1e",
+                        "primary": "#004ac6",
+                        "secondary-container": "#8a4cfc",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#712ae2",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "tertiary-fixed": "#dae2fd",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container": "#eceef0",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary": "#4d556b",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#2d3133",
+                        "outline": "#737686",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-container-low": "#f2f4f6",
+                        "secondary-fixed": "#eaddff",
+                        "on-secondary-fixed": "#25005a",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary-container": "#eef0ff",
+                        "inverse-primary": "#b4c5ff",
+                        "outline-variant": "#c3c6d7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin": "32px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "lg": "48px",
+                        "xl": "80px",
+                        "stack-lg": "48px",
+                        "margin-desktop": "48px",
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "button": ["Sora"],
+                        "body-md": ["Sora"],
+                        "body-sm": ["Sora"],
+                        "display": ["Sora"],
+                        "label-caps": ["Sora"],
+                        "h1": ["Sora"],
+                        "h2": ["Sora"],
+                        "body-lg": ["Sora"],
+                        "h3": ["Sora"]
+                    },
+                    "fontSize": {
+                        "button": ["14px", { "lineHeight": "1", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "h1": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "h2": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    html { scroll-behavior: smooth; }
+</style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+
+<nav class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.02]">
+<div class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+<a href="home.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" class="w-10 h-8">
+        <defs>
+            <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <path d="M40 60 L100 140 L160 60" fill="none" stroke="url(#brand-grad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M70 60 L100 100 L130 60" fill="none" stroke="url(#brand-grad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+    <div class="font-h2 text-h2 font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        EventPro
+    </div>
+</a>
+
+<div class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="home.html#event-gallery">Events</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300" href="protfolio.html">Venues</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300 ease-in-out hover:scale-[1.02]" href="about.html">About</a>
+</div>
+<div class="flex items-center gap-4">
+<div id="auth-container" class="flex items-center gap-3">
+    <div id="unauth-actions" class="flex items-center gap-3">
+        <a href="login.html" class="bg-surface-container border border-primary/20 text-primary font-medium py-2 px-6 rounded-full hover:bg-primary/5 transition-all">Sign Up</a>
+    </div>
+    
+    <div id="auth-actions" class="relative hidden">
+        <button id="profile-btn" class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-lg border border-outline-variant/30 hover:shadow-md transition-all">
+            U
+        </button>
+        
+        <div id="profile-dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-outline-variant/20 py-2 hidden opacity-0 transition-opacity duration-200 z-50">
+            <div class="px-4 py-2 border-b border-outline-variant/10 mb-1">
+                <p class="text-sm font-semibold text-on-surface" id="dropdown-username">User</p>
+            </div>
+            <a href="dashboard.html" id="dropdown-dashboard" class="hidden block px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">Dashboard</a>
+            <button id="logout-btn" class="w-full text-left block px-4 py-2 text-sm text-error hover:bg-error/5 transition-colors">Logout</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</nav>
+
+<main class="flex-grow pt-[100px] pb-stack-lg flex flex-col gap-stack-lg max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop">
+
+<section class="relative rounded-2xl overflow-hidden bg-surface-container-lowest shadow-lg border border-outline-variant/20 p-8 md:p-16 flex flex-col md:flex-row gap-gutter items-center">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container/5 to-surface-container/30 z-[-1]"></div>
+<div class="flex-1 space-y-6">
+<h1 class="font-display text-display text-on-surface">Architecting <br/><span class="text-primary">Experiences</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    EventVantage was born from a singular vision: to bring order to the chaos of high-stakes event production. We recognized that the most memorable experiences require a foundation of absolute precision. We build the tools that empower visionaries to orchestrate moments that resonate, scale, and leave a lasting impact.
+                </p>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+                    Our platform is more than software; it's a command center for the modern curator. By blending robust enterprise functionality with an interface that feels intuitive and alive, we bridge the gap between logistical necessity and creative ambition.
+                </p>
+</div>
+<div class="flex-1 relative w-full aspect-video md:aspect-square rounded-xl overflow-hidden border border-outline-variant/20">
+<img alt="Event production team at work" class="w-full h-full object-cover" src="./assets/gallery/5.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 via-transparent to-transparent"></div>
+</div>
+</section>
+
+<section class="space-y-stack-md">
+<div class="text-center space-y-4 max-w-3xl mx-auto">
+<h2 class="font-h1 text-h1 text-on-surface">Meet the <span class="text-primary">Founders</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">The architects behind the platform. A symphony of strategic minds and creative force.</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+
+<div class="bg-surface-container-lowest shadow-md border border-outline-variant/30 rounded-xl overflow-hidden flex flex-col group relative transition-transform duration-400 hover:-translate-y-2">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="h-56 w-full relative">
+<img alt="CEO Portrait" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" src="./assets/founders/1.jpeg"/>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<h3 class="font-h3 text-h3 text-on-surface">Aayush rakawat</h3>
+<p class="font-label-caps text-label-caps text-primary tracking-wider mt-1">Chief Executive Officer</p>
+</div>
+</div>
+<div class="p-5 flex-grow">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                            Drives enterprise strategy with 15+ years of experience in orchestrating global tech summits.
+                        </p>
+</div>
+</div>
+
+<div class="bg-surface-container-lowest shadow-md border border-outline-variant/30 rounded-xl overflow-hidden flex flex-col group relative transition-transform duration-400 hover:-translate-y-2 md:translate-y-8">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="h-56 w-full relative">
+<img alt="Creative Director Portrait" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" src="./assets/founders/2.jpeg"/>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<h3 class="font-h3 text-h3 text-on-surface">Pravin Singh</h3>
+<p class="font-label-caps text-label-caps text-secondary tracking-wider mt-1">Creative Director</p>
+</div>
+</div>
+<div class="p-5 flex-grow">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                            Ensures our platform functions flawlessly and feels premium with his background in experiential design.
+                        </p>
+</div>
+</div>
+
+<div class="bg-surface-container-lowest shadow-md border border-outline-variant/30 rounded-xl overflow-hidden flex flex-col group relative transition-transform duration-400 hover:-translate-y-2">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="h-56 w-full relative">
+<img alt="Event Strategist Portrait" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" src="./assets/founders/3.jpeg"/>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<h3 class="font-h3 text-h3 text-on-surface">Prem prachar</h3>
+<p class="font-label-caps text-label-caps text-primary tracking-wider mt-1">Event Strategist</p>
+</div>
+</div>
+<div class="p-5 flex-grow">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                            Shapes the core logic algorithms powering our planning tools through her deep understanding of venue dynamics.
+                        </p>
+</div>
+</div>
+
+<div class="bg-surface-container-lowest shadow-md border border-outline-variant/30 rounded-xl overflow-hidden flex flex-col group relative transition-transform duration-400 hover:-translate-y-2 md:translate-y-8">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="h-56 w-full relative">
+<img alt="Lead Developer Portrait" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" src="./assets/founders/4.jpeg"/>
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-surface-container-lowest to-transparent">
+<h3 class="font-h3 text-h3 text-on-surface">Bhavnesh jangid</h3>
+<p class="font-label-caps text-label-caps text-primary tracking-wider mt-1">Lead Developer</p>
+</div>
+</div>
+<div class="p-5 flex-grow">
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-3">
+                            Architects the scalable, lightning-fast infrastructure that keeps EventVantage stable during multi-day, global conferences.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="w-full relative bg-surface-container-low border-t border-outline-variant/30 flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1 space-y-4">
+<div class="font-h3 text-h3 text-on-surface">EventPro</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Elevating event orchestration through intelligent design.</p>
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-8 justify-start md:justify-end items-end">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Cookie Settings</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors transition-opacity hover:opacity-80" href="#">Contact Us</a>
+</div>
+<div class="col-span-1 md:col-span-4 mt-8 pt-8 border-t border-outline-variant/20 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">© 2024 EventPro Global. All rights reserved.</p>
+</div>
+</div>
+
+<div class="fixed bottom-24 right-6 flex flex-col gap-3 z-50">
+    <a href="https://www.instagram.com/bhavnesh__jangid9180?igsh=dXFxeDN2NXowcnJ0" target="_blank" class="w-10 h-10 rounded-full bg-white border border-outline-variant/30 shadow-md flex items-center justify-center text-[#E1306C] hover:-translate-x-1 hover:shadow-lg transition-all" title="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    </a>
+    <a href="#" class="w-10 h-10 rounded-full bg-white border border-outline-variant/30 shadow-md flex items-center justify-center text-[#1877F2] hover:-translate-x-1 hover:shadow-lg transition-all" title="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </a>
+    <a href="#" class="w-10 h-10 rounded-full bg-white border border-outline-variant/30 shadow-md flex items-center justify-center text-[#0A66C2] hover:-translate-x-1 hover:shadow-lg transition-all" title="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </a>
+</div>
+
+<a href="#" id="whatsapp-help-btn" class="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-white shadow-lg flex items-center justify-center hover:scale-110 hover:shadow-xl transition-all z-50 overflow-hidden" title="WhatsApp Help">
+    <img src="./assets/icons8-whatsapp.gif" alt="WhatsApp" class="w-full h-full object-cover">
+</a>
+<script>
+    document.getElementById('whatsapp-help-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        var phone = '916376492183';
+        var text = encodeURIComponent('Hi! I need help.');
+        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        var url = isMobile 
+            ? 'whatsapp://send?phone=' + phone + '&text=' + text 
+            : 'https://web.whatsapp.com/send?phone=' + phone + '&text=' + text;
+        window.open(url, '_blank');
+    });
+</script>
+<style>
+.Cursor {
+    pointer-events: none;
+    position: fixed;
+    display: block;
+    border-radius: 0;
+    transform-origin: center center;
+    mix-blend-mode: difference;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    filter: url("#goo");
+}
+.Cursor span {
+    position: absolute;
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 20px;
+    background-color: white;
+    transform-origin: center center;
+    transform: translate(-50%, -50%);
+}
+</style>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="800" style="display:none;">
+  <defs>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+    </filter>
+  </defs>
+</svg>
+<div id="cursor" class="Cursor"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+<script>
+const cursor = document.getElementById("cursor");
+const amount = 20;
+const sineDots = Math.floor(amount * 0.3);
+const width = 26;
+const idleTimeout = 150;
+let lastFrame = 0;
+let mousePosition = {x: 0, y: 0};
+let dots = [];
+let timeoutID;
+let idle = false;
+
+class Dot {
+    constructor(index = 0) {
+        this.index = index;
+        this.anglespeed = 0.05;
+        this.x = 0;
+        this.y = 0;
+        this.scale = 1 - 0.05 * index;
+        this.range = width / 2 - width / 2 * this.scale + 2;
+        this.limit = width * 0.75 * this.scale;
+        this.element = document.createElement("span");
+        TweenMax.set(this.element, {scale: this.scale});
+        cursor.appendChild(this.element);
+    }
+    lock() {
+        this.lockX = this.x;
+        this.lockY = this.y;
+        this.angleX = Math.PI * 2 * Math.random();
+        this.angleY = Math.PI * 2 * Math.random();
+    }
+    draw(delta) {
+        if (!idle || this.index <= sineDots) {
+            TweenMax.set(this.element, {x: this.x, y: this.y});
+        } else {
+            this.angleX += this.anglespeed;
+            this.angleY += this.anglespeed;
+            this.y = this.lockY + Math.sin(this.angleY) * this.range;
+            this.x = this.lockX + Math.sin(this.angleX) * this.range;
+            TweenMax.set(this.element, {x: this.x, y: this.y});
+        }
+    }
+}
+
+function initCursor() {
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove);
+    lastFrame += new Date();
+    buildDots();
+    renderCursor();
+}
+
+function startIdleTimer() {
+    timeoutID = setTimeout(goInactive, idleTimeout);
+    idle = false;
+}
+
+function resetIdleTimer() {
+    clearTimeout(timeoutID);
+    startIdleTimer();
+}
+
+function goInactive() {
+    idle = true;
+    for (let dot of dots) {
+        dot.lock();
+    }
+}
+
+function buildDots() {
+    for (let i = 0; i < amount; i++) {
+        let dot = new Dot(i);
+        dots.push(dot);
+    }
+}
+
+const onMouseMove = event => {
+    mousePosition.x = event.clientX - width / 2;
+    mousePosition.y = event.clientY - width / 2;
+    resetIdleTimer();
+};
+
+const onTouchMove = event => {
+    mousePosition.x = event.touches[0].clientX - width / 2;
+    mousePosition.y = event.touches[0].clientY - width / 2;
+    resetIdleTimer();
+};
+
+const renderCursor = timestamp => {
+    const delta = timestamp - lastFrame;
+    positionCursor(delta);
+    lastFrame = timestamp;
+    requestAnimationFrame(renderCursor);
+};
+
+const positionCursor = delta => {
+    let x = mousePosition.x;
+    let y = mousePosition.y;
+    dots.forEach((dot, index, dots) => {
+        let nextDot = dots[index + 1] || dots[0];
+        dot.x = x;
+        dot.y = y;
+        dot.draw(delta);
+        if (!idle || index <= sineDots) {
+            const dx = (nextDot.x - dot.x) * 0.35;
+            const dy = (nextDot.y - dot.y) * 0.35;
+            x += dx;
+            y += dy;
+        }
+    });
+};
+
+initCursor();
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const unauthActions = document.getElementById('unauth-actions');
+        const authActions = document.getElementById('auth-actions');
+        const profileBtn = document.getElementById('profile-btn');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const logoutBtn = document.getElementById('logout-btn');
+        const dropdownUsername = document.getElementById('dropdown-username');
+        const dropdownDashboard = document.getElementById('dropdown-dashboard');
+
+        const isLoggedIn = localStorage.getItem('eventpro_auth') === 'true';
+        const userName = localStorage.getItem('eventpro_user') || 'User';
+        const role = localStorage.getItem('eventpro_role') || 'user';
+
+        if (isLoggedIn) {
+            unauthActions.classList.add('hidden');
+            authActions.classList.remove('hidden');
+            profileBtn.innerText = userName.charAt(0).toUpperCase();
+            dropdownUsername.innerText = userName;
+            if (role === 'admin' && dropdownDashboard) {
+                dropdownDashboard.classList.remove('hidden');
+            }
+        } else {
+            unauthActions.classList.remove('hidden');
+            authActions.classList.add('hidden');
+        }
+
+        if(profileBtn) {
+            profileBtn.addEventListener('click', () => {
+                if (profileDropdown.classList.contains('hidden')) {
+                    profileDropdown.classList.remove('hidden');
+                    setTimeout(() => profileDropdown.classList.remove('opacity-0'), 10);
+                } else {
+                    profileDropdown.classList.add('opacity-0');
+                    setTimeout(() => profileDropdown.classList.add('hidden'), 200);
+                }
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (authActions && !authActions.contains(e.target) && profileDropdown) {
+                profileDropdown.classList.add('opacity-0');
+                setTimeout(() => profileDropdown.classList.add('hidden'), 200);
+            }
+        });
+
+        if(logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('eventpro_auth');
+                localStorage.removeItem('eventpro_user');
+                localStorage.removeItem('eventpro_role');
+                window.location.reload();
+            });
+        }
+    });
+</script>
+</body></html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EventVantage - Dashboard</title>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#191c1e",
+                "primary-container": "#2563eb",
+                "on-primary-container": "#eeefff",
+                "on-surface-variant": "#434655",
+                "on-secondary-container": "#fffbff",
+                "on-secondary-fixed-variant": "#5a00c6",
+                "background": "#f7f9fb",
+                "surface-tint": "#0053db",
+                "tertiary-container": "#656d84",
+                "on-tertiary-fixed-variant": "#3f465c",
+                "secondary-fixed-dim": "#d2bbff",
+                "on-surface": "#191c1e",
+                "primary": "#004ac6",
+                "secondary-container": "#8a4cfc",
+                "surface-variant": "#e0e3e5",
+                "secondary": "#712ae2",
+                "primary-fixed-dim": "#b4c5ff",
+                "on-secondary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#f7f9fb",
+                "tertiary-fixed": "#dae2fd",
+                "error-container": "#ffdad6",
+                "on-tertiary": "#ffffff",
+                "surface-bright": "#f7f9fb",
+                "primary-fixed": "#dbe1ff",
+                "surface-container": "#eceef0",
+                "on-error": "#ffffff",
+                "on-primary": "#ffffff",
+                "on-error-container": "#93000a",
+                "inverse-on-surface": "#eff1f3",
+                "tertiary": "#4d556b",
+                "tertiary-fixed-dim": "#bec6e0",
+                "inverse-surface": "#2d3133",
+                "outline": "#737686",
+                "on-primary-fixed-variant": "#003ea8",
+                "surface-container-highest": "#e0e3e5",
+                "on-tertiary-fixed": "#131b2e",
+                "surface-container-low": "#f2f4f6",
+                "secondary-fixed": "#eaddff",
+                "on-secondary-fixed": "#25005a",
+                "error": "#ba1a1a",
+                "on-primary-fixed": "#00174b",
+                "surface-container-high": "#e6e8ea",
+                "surface-dim": "#d8dadc",
+                "on-tertiary-container": "#eef0ff",
+                "inverse-primary": "#b4c5ff",
+                "outline-variant": "#c3c6d7"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "gutter": "24px",
+                "margin": "32px",
+                "sm": "12px",
+                "base": "8px",
+                "xs": "4px",
+                "md": "24px",
+                "lg": "48px",
+                "xl": "80px",
+                "stack-md": "24px",
+                "stack-lg": "48px",
+                "margin-desktop": "48px",
+                "container-max": "1440px"
+        },
+        "fontFamily": {
+                "button": [
+                        "Sora"
+                ],
+                "body-md": [
+                        "Sora"
+                ],
+                "body-sm": [
+                        "Sora"
+                ],
+                "display": [
+                        "Sora"
+                ],
+                "label-caps": [
+                        "Sora"
+                ],
+                "h1": [
+                        "Sora"
+                ],
+                "h2": [
+                        "Sora"
+                ],
+                "body-lg": [
+                        "Sora"
+                ],
+                "h3": [
+                        "Sora"
+                ]
+        },
+        "fontSize": {
+                "button": [
+                        "14px",
+                        {
+                                "lineHeight": "1",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "display": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "h1": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "h2": [
+                        "24px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "h3": [
+                        "20px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-hidden flex selection:bg-primary selection:text-on-primary">
+
+<nav class="h-screen w-64 hidden lg:flex flex-col fixed left-0 top-0 border-r border-outline-variant/30 bg-surface py-stack-md z-40">
+
+<a href="home.html" class="px-6 mb-8 flex items-center gap-4 hover:opacity-80 transition-opacity">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" class="w-10 h-8">
+        <defs>
+            <linearGradient id="brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+        <path d="M40 60 L100 140 L160 60" fill="none" stroke="url(#brand-grad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M70 60 L100 100 L130 60" fill="none" stroke="url(#brand-grad)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    </svg>
+<div>
+<div class="font-h2 text-h2 font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">EventPro</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Enterprise Suite</p>
+</div>
+</a>
+<div class="flex-1 px-4 space-y-2 overflow-y-auto">
+<a id="nav-dashboard" class="flex items-center gap-3 px-4 py-3 bg-primary text-on-primary rounded-lg mx-2 active:scale-95 transition-transform shadow-sm cursor-pointer" onclick="showSection('dashboard-section')">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-body-md font-medium">Dashboard</span>
+</a>
+<a id="nav-orders" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container mx-2 rounded-lg transition-all active:scale-95 cursor-pointer" onclick="showSection('orders-section')">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-body-md font-medium">Orders</span>
+</a>
+</div>
+<div class="px-4 space-y-2 pt-4 border-t border-outline-variant/30">
+
+<button id="dashboard-logout-btn" class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container mx-2 rounded-lg transition-all w-full text-left">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md">Logout</span>
+</button>
+</div>
+</nav>
+
+<main class="flex-1 lg:pl-64 h-screen overflow-y-auto relative bg-background">
+<div class="p-gutter md:p-margin-desktop max-w-container-max mx-auto w-full relative z-10">
+
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-stack-lg">
+<div>
+<h2 class="font-h1 text-h1 font-bold text-on-surface tracking-tight mb-2">Command Center</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Here's what's happening across your events today.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant bg-surface text-on-surface hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<span class="font-button">This Month</span>
+<span class="material-symbols-outlined text-[20px]">expand_more</span>
+</button>
+<button class="flex items-center justify-center w-11 h-11 rounded-lg bg-primary text-on-primary hover:bg-primary/90 transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</header>
+
+
+<div id="dashboard-section">
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+
+
+<div class="bg-surface border border-outline-variant/40 rounded-2xl p-6 relative overflow-hidden group shadow-sm">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="flex items-center gap-1 text-sm text-emerald-700 font-medium bg-emerald-100 px-2 py-1 rounded-full border border-emerald-200">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 12.5%
+                        </span>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Total Revenue</h3>
+<p class="font-display text-display font-bold text-on-surface counter" data-target="0" data-prefix="₹">₹0</p>
+</div>
+</div>
+
+<div class="bg-surface border border-outline-variant/40 rounded-2xl p-6 relative overflow-hidden group shadow-sm">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">event</span>
+</div>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Active Events</h3>
+<div class="flex items-baseline gap-2">
+<p id="active-events-counter" class="font-display text-display font-bold text-on-surface counter" data-target="5">5</p>
+<p class="text-on-surface-variant text-sm">this quarter</p>
+</div>
+</div>
+</div>
+
+<div class="bg-surface border border-outline-variant/40 rounded-2xl p-6 relative overflow-hidden group shadow-sm">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary-container">
+<span class="material-symbols-outlined">bookmark_added</span>
+</div>
+<span class="flex items-center gap-1 text-sm text-emerald-700 font-medium bg-emerald-100 px-2 py-1 rounded-full border border-emerald-200">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 4.2%
+                        </span>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Upcoming Bookings</h3>
+<p class="font-display text-display font-bold text-on-surface counter" data-target="15">15</p>
+</div>
+</div>
+
+<div class="bg-surface border border-outline-variant/40 rounded-2xl p-6 relative overflow-hidden group shadow-sm">
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">sentiment_very_satisfied</span>
+</div>
+</div>
+<div class="relative z-10">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-1 uppercase">Avg Satisfaction</h3>
+<div class="flex items-baseline gap-2">
+<p class="font-display text-display font-bold text-on-surface counter" data-target="4.5" data-decimals="1">4.5</p>
+<p class="text-on-surface-variant text-sm">/ 5.0</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+
+<div class="lg:col-span-2 bg-surface border border-outline-variant/40 rounded-2xl flex flex-col overflow-hidden shadow-sm">
+<div class="p-6 border-b border-outline-variant/30 flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-h3 text-h3 text-on-surface font-semibold">Active Event Management</h3>
+<button class="text-primary hover:text-primary/80 transition-colors text-sm font-medium">View All</button>
+</div>
+<div class="overflow-x-auto bg-surface">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant/30">
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Event Name</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Client</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<p class="font-medium text-on-surface">Global Tech Summit 2024</p>
+<p class="text-sm text-on-surface-variant">San Francisco, CA</p>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary/10 text-[12px] flex items-center justify-center font-bold text-primary">N</div>
+<span class="text-sm font-medium text-on-surface">Nexus Corp</span>
+</div>
+</td>
+<td class="p-4 text-sm text-on-surface-variant">Oct 12 - 14</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700 border border-emerald-200">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                            Live
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<p class="font-medium text-on-surface">Winter Gala &amp; Awards</p>
+<p class="text-sm text-on-surface-variant">New York, NY</p>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-secondary/10 text-[12px] flex items-center justify-center font-bold text-secondary">V</div>
+<span class="text-sm font-medium text-on-surface">Vanguard</span>
+</div>
+</td>
+<td class="p-4 text-sm text-on-surface-variant">Dec 05</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
+                                            Draft
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-4">
+<p class="font-medium text-on-surface">Product Launch: Apex</p>
+<p class="text-sm text-on-surface-variant">Virtual</p>
+</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-[12px] flex items-center justify-center font-bold text-on-surface-variant">S</div>
+<span class="text-sm font-medium text-on-surface">Synergy Inc</span>
+</div>
+</td>
+<td class="p-4 text-sm text-on-surface-variant">Nov 22</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-surface-container text-on-surface-variant border border-outline-variant/30">
+                                            Sold Out
+                                        </span>
+</td>
+<td class="p-4 text-right">
+<button class="p-1.5 rounded-md text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors opacity-0 group-hover:opacity-100">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="lg:col-span-1 bg-surface border border-outline-variant/40 rounded-2xl flex flex-col shadow-sm">
+<div class="p-6 border-b border-outline-variant/30 bg-surface-container-lowest">
+<h3 class="font-h3 text-h3 text-on-surface font-semibold">Recent Activity</h3>
+</div>
+<div class="p-6 flex-1 overflow-y-auto bg-surface">
+<div class="relative pl-4 space-y-8 before:absolute before:inset-y-0 before:left-[23px] before:w-[2px] before:bg-outline-variant/30">
+
+<div class="relative">
+<div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-surface z-10"></div>
+<p class="text-sm text-on-surface-variant mb-1 font-medium">10 mins ago</p>
+<p class="font-medium text-on-surface">New booking confirmed</p>
+<div class="mt-2 p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<p class="text-sm text-on-surface-variant"><span class="text-on-surface font-semibold">Sarah Jenkins</span> booked VIP pass for Global Tech Summit.</p>
+</div>
+</div>
+
+<div class="relative">
+<div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-secondary ring-4 ring-surface z-10"></div>
+<p class="text-sm text-on-surface-variant mb-1 font-medium">2 hours ago</p>
+<p class="font-medium text-on-surface">Venue contract signed</p>
+<p class="text-sm text-on-surface-variant mt-1">Moscone Center agreement finalized for 2025.</p>
+</div>
+
+<div class="relative">
+<div class="absolute -left-[29px] top-1 w-3 h-3 rounded-full bg-outline ring-4 ring-surface z-10"></div>
+<p class="text-sm text-on-surface-variant mb-1 font-medium">Yesterday</p>
+<p class="font-medium text-on-surface">Campaign launched</p>
+<p class="text-sm text-on-surface-variant mt-1">"Winter Gala Early Bird" email sent to 15k subscribers.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div> <!-- End dashboard-section -->
+
+<div id="orders-section" class="hidden">
+    <div class="bg-surface border border-outline-variant/40 rounded-2xl flex flex-col overflow-hidden shadow-sm">
+        <div class="p-6 border-b border-outline-variant/30 bg-surface-container-lowest flex justify-between">
+            <h3 class="font-h3 text-h3 text-on-surface font-semibold">Customer Event Orders</h3>
+            <button onclick="fetchOrders()" class="text-primary text-sm flex items-center gap-1"><span class="material-symbols-outlined text-[18px]">refresh</span> Refresh</button>
+        </div>
+        <div class="overflow-x-auto bg-surface">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-surface-container-low border-b border-outline-variant/30">
+                        <th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">ID</th>
+                        <th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Customer</th>
+                        <th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Email</th>
+                        <th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Event</th>
+                        <th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Date</th>
+                        <th class="p-4 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Details</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-tbody" class="divide-y divide-outline-variant/20">
+                    <tr><td colspan="6" class="p-4 text-center text-on-surface-variant">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const logoutBtn = document.getElementById('dashboard-logout-btn');
+    if(logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('eventvantage_auth');
+            localStorage.removeItem('eventvantage_user');
+            localStorage.removeItem('eventvantage_role');
+            window.location.href = 'home.html';
+        });
+    }
+
+    const counters = document.querySelectorAll('.counter');
+    const speed = 100;
+    
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const prefix = counter.getAttribute('data-prefix') || '';
+            const decimals = counter.getAttribute('data-decimals') ? +counter.getAttribute('data-decimals') : 0;
+            
+            let currentStr = counter.innerText.replace(/[^0-9.-]+/g,"");
+            const count = +currentStr;
+            const inc = target / speed;
+            
+            if (count < target) {
+                let nextValue = count + inc;
+                if(nextValue > target) nextValue = target;
+                
+                if (decimals > 0) {
+                    counter.innerText = prefix + nextValue.toFixed(decimals);
+                } else {
+                    counter.innerText = prefix + Math.ceil(nextValue).toLocaleString();
+                }
+                setTimeout(updateCount, 20);
+            } else {
+                if (decimals > 0) {
+                    counter.innerText = prefix + target.toFixed(decimals);
+                } else {
+                    counter.innerText = prefix + target.toLocaleString();
+                }
+            }
+        };
+        
+        updateCount();
+    });
+
+    window.showSection = function(sectionId) {
+        document.getElementById('dashboard-section').classList.add('hidden');
+        document.getElementById('orders-section').classList.add('hidden');
+        document.getElementById(sectionId).classList.remove('hidden');
+        
+        document.getElementById('nav-dashboard').classList.remove('bg-primary', 'text-on-primary');
+        document.getElementById('nav-dashboard').classList.add('text-on-surface-variant');
+        document.getElementById('nav-orders').classList.remove('bg-primary', 'text-on-primary');
+        document.getElementById('nav-orders').classList.add('text-on-surface-variant');
+        
+        if(sectionId === 'dashboard-section') {
+            document.getElementById('nav-dashboard').classList.add('bg-primary', 'text-on-primary');
+            document.getElementById('nav-dashboard').classList.remove('text-on-surface-variant');
+        } else {
+            document.getElementById('nav-orders').classList.add('bg-primary', 'text-on-primary');
+            document.getElementById('nav-orders').classList.remove('text-on-surface-variant');
+            fetchOrders();
+        }
+    };
+
+    window.fetchOrders = async function() {
+        const tbody = document.getElementById('orders-tbody');
+        tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-on-surface-variant">Loading orders...</td></tr>';
+        try {
+            
+        const res = await fetch((window.location.hostname ? `http://${window.location.hostname}:3000` : 'http://localhost:3000') + '/api/orders');
+        const data = await res.json();
+        if(data.orders && data.orders.length > 0) {
+            
+            // UPDATE ACTIVE EVENTS
+            const baseEvents = 5;
+            const newEvents = baseEvents + data.orders.length;
+            const activeEventsCounter = document.getElementById('active-events-counter');
+            if (activeEventsCounter) {
+                activeEventsCounter.setAttribute('data-target', newEvents);
+                activeEventsCounter.innerText = newEvents;
+            }
+
+                tbody.innerHTML = '';
+                data.orders.forEach(order => {
+                    let detailsStr = '';
+                    try {
+                        const details = JSON.parse(order.details || '{}');
+                        detailsStr = `Guests: ${details.guests || 'N/A'}<br>Reqs: ${details.additional || 'None'}`;
+                    } catch(e) {
+                        detailsStr = order.details;
+                    }
+                    tbody.innerHTML += `
+                    <tr class="hover:bg-surface-container-low/50 transition-colors group">
+                        <td class="p-4 text-sm text-on-surface">#${order.id}</td>
+                        <td class="p-4 font-medium text-on-surface">${order.user_name || 'N/A'}</td>
+                        <td class="p-4 text-sm text-on-surface-variant">${order.user_email || 'N/A'}</td>
+                        <td class="p-4 text-sm text-on-surface">${order.event_name}</td>
+                        <td class="p-4 text-sm text-on-surface-variant">${order.order_date}</td>
+                        <td class="p-4 text-xs text-on-surface-variant">${detailsStr}</td>
+                    </tr>`;
+                });
+                
+                // Update revenue based on orders (Optional, e.g. each order = 15000 INR)
+                // document.querySelector('.counter[data-prefix="₹"]').setAttribute('data-target', data.orders.length * 15000);
+            } else {
+                tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-on-surface-variant">No orders found.</td></tr>';
+            }
+        } catch(e) {
+            tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-error">Error loading orders.</td></tr>';
+        }
+    };
+    window.fetchOrders();
+});
+
+    document.getElementById('dashboard-logout-btn').addEventListener('click', function() {
+        localStorage.removeItem('eventpro_auth');
+        localStorage.removeItem('eventpro_user');
+        localStorage.removeItem('eventpro_email');
+        window.location.href = 'home.html';
+    });
+</script>
+</body></html>
